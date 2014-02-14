@@ -10,3 +10,8 @@ set_include_path(implode(PATH_SEPARATOR, array(
 require_once 'SplClassLoader.php';
 $loader = new SplClassLoader('Koine', $libPath);
 $loader->register();
+
+class DummyElement extends \Koine\Html\Element {
+    protected $_tagName = 'dummy';
+}
+

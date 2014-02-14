@@ -11,8 +11,7 @@ class AttributeSet
 
     public function set($name, $value = null)
     {
-        $this->remove($name)->add($name, $value);
-        return $this;
+        return $this->remove($name)->add($name, $value);
     }
 
     public function get($name, $default = null)
@@ -109,7 +108,7 @@ class AttributeSet
 
     public function addClass($class)
     {
-        $classes                    = $this->getRaw('class');
+        $classes                    = $this->getRaw('class', array());
         $classes[]                  = $class;
         $this->_attributes['class'] = array_unique($classes);
         return $this;
