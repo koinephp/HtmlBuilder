@@ -82,7 +82,7 @@ abstract class Base
             }
 
             $parts[] = '>';
-            $parts[] = $this->getContent();
+            $parts[] = $this->getInnerHtml();
             $parts[] = '</';
             $parts[] = $this->getTagName();
             $parts[] = '>';
@@ -123,7 +123,7 @@ abstract class Base
         return $this;
     }
 
-    public function getContent()
+    public function getInnerHtml()
     {
         return (string) $this->_children;
     }
