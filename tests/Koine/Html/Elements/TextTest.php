@@ -2,18 +2,12 @@
 
 namespace Koine\Html\Elements;
 
-class TextTest extends \PHPUnit_Framework_TestCase
+class TextTest extends \HtmlElementTestCase
 {
-    protected $_o;
 
     public function setUp()
     {
         $this->o = new Text('test');
-    }
-
-    public function testItIsAnHtmlElement()
-    {
-        $this->assertInstanceOf('\Koine\Html\Elements\Base', $this->o);
     }
 
     public function testItRendersTheEscapedText()

@@ -8,11 +8,13 @@ set_include_path(implode(PATH_SEPARATOR, array(
 )));
 
 require_once 'SplClassLoader.php';
+require_once 'HtmlElementTestCase.php';
+
 $loader = new SplClassLoader('Koine', $libPath);
 $loader->register();
 
 class DummyElement extends \Koine\Html\Elements\Base {
-    protected $_tagName = 'dummy';
+    protected $_tagName = 'dummyelement';
     protected $_selfClosing = true;
 }
 

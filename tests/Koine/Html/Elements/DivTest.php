@@ -2,17 +2,7 @@
 
 namespace Koine\Html\Elements;
 
-class DivTest extends \PHPUnit_Framework_TestCase
+class DivTest extends \HtmlElementTestCase
 {
-    protected $o;
 
-    public function setUp()
-    {
-        $this->o = new Div;
-    }
-
-    public function testItIsAnHtmlElement()
-    {
-        $this->assertInstanceOf('\Koine\Html\Elements\Base', $this->o);
-    }
 }

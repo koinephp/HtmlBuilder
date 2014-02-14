@@ -2,14 +2,12 @@
 
 namespace Koine\Html\Elements;
 
-class BaseTest extends \PHPUnit_Framework_TestCase
+class BaseTest extends \HtmlElementTestCase
 {
 
-    protected $o;
-
-    public function setUp()
+    public function getClass()
     {
-        $this->o = new \DummyElement;
+        return 'DummyElement';
     }
 
     public function testItHasAnAttributeSet()
@@ -32,7 +30,7 @@ class BaseTest extends \PHPUnit_Framework_TestCase
     public function testItCanRenderSelfClosingElement()
     {
         $element = $this->o->addClass('a')->addClass('b')->set('data-remote', 'true');
-        $string = '<dummy class="a b" data-remote="true" />';
+        $string = '<dummyelement class="a b" data-remote="true" />';
         $this->assertEquals($string, (string) $element);
     }
 
