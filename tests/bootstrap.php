@@ -13,5 +13,6 @@ $loader->register();
 
 class DummyElement extends \Koine\Html\Element {
     protected $_tagName = 'dummy';
+    protected $_selfClosing = true;
 }
 

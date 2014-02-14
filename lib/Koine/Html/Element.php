@@ -10,6 +10,8 @@ abstract class Element
 
     protected $_tagName;
 
+    protected $_selfClosing = false;
+
     public function __construct()
     {
         $this->_attributes = new AttributeSet;
@@ -23,6 +25,11 @@ abstract class Element
     public function getTagName()
     {
         return $this->_tagName;
+    }
+
+    public function getSelfClosing()
+    {
+        return $this->_selfClosing;
     }
 
     public function __call($method, $arguments = null)
@@ -50,7 +57,36 @@ abstract class Element
 
     public function render()
     {
-        return '<' . $this->getTagName() . ' ' . $this->getAttributes() . ' />';
+        $parts = array();
+
+        if ($this->getSelfClosing()) {
+            $parts[] = '<';
+            $parts[] = $this->getTagName();
+            $parts[] = ' ';
+            $parts[] = $this->getAttributes();
+            $parts[] = ' />';
+        } else {
+            $parts[] = '<';
+            $parts[] = $this->getTagName();
+
+            $attributes = (string) $this->getAttributes();
+
+            if ($attributes) {
+                $parts[] = " $attributes";
+            }
+
+            $parts[] = '>';
+            $parts[] = '</';
+            $parts[] = $this->getTagName();
+            $parts[] = '>';
+        }
+
+        return implode('', $parts);
+    }
+
+    public function escape($string)
+    {
+        return $this->getAttributes()->escape($string);
     }
 
 }
