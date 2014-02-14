@@ -1,10 +1,11 @@
 <?php
 
-namespace Koine\Html;
+namespace Koine\Html\Elements;
 
 use Koine\Html\AttributeSet;
+use Koine\Html\ElementSet;
 
-abstract class Element
+abstract class Base
 {
     protected $_attributes;
 
@@ -12,9 +13,12 @@ abstract class Element
 
     protected $_selfClosing = false;
 
+    protected $_children;
+
     public function __construct()
     {
         $this->_attributes = new AttributeSet;
+        $this->_children = new ElementSet;
     }
 
     public function getAttributes()
@@ -76,6 +80,7 @@ abstract class Element
             }
 
             $parts[] = '>';
+            $parts[] = $this->getContent();
             $parts[] = '</';
             $parts[] = $this->getTagName();
             $parts[] = '>';
@@ -87,6 +92,38 @@ abstract class Element
     public function escape($string)
     {
         return $this->getAttributes()->escape($string);
+    }
+
+    public function setText($text)
+    {
+        return $this->append(new Text($text));
+    }
+
+    public function setHtml($html)
+    {
+        return $this->append(new RawHtml($html));
+    }
+
+    public function append($elements)
+    {
+        if (is_array($elements)) {
+            $this->_children->appendElements($elements);
+        } else {
+            $this->_children->append($elements);
+        }
+
+        return $this;
+    }
+
+    public function prepend(Base $element)
+    {
+        $this->_children->prepend($element);
+        return $this;
+    }
+
+    public function getContent()
+    {
+        return (string) $this->_children;
     }
 
 }

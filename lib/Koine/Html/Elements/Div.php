@@ -2,9 +2,7 @@
 
 namespace Koine\Html\Elements;
 
-use Koine\Html\Element;
-
-class Div extends Element
+class Div extends Base
 {
     protected $_tagName = 'div';
 }

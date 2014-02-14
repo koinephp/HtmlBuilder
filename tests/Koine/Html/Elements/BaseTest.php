@@ -1,10 +1,8 @@
 <?php
 
-namespace Koine\Html;
+namespace Koine\Html\Elements;
 
-use Koine\Html\Elements\Div;
-
-class ElementTest extends \PHPUnit_Framework_TestCase
+class BaseTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $o;
@@ -47,6 +45,33 @@ class ElementTest extends \PHPUnit_Framework_TestCase
             '<div class="test"></div>',
             (string) $this->o->render()
         );
+    }
+
+    public function testItCanRenderNestedElements()
+    {
+        $parent = new Div;
+        $parent->addClass('parent');
+
+        $text = new Div;
+        $text->addClass('text')->setText('<b>foo</b>');
+
+        $raw = new Div;
+        $raw->setHtml('<b>bar</b>');
+
+        $emptyDiv = new Div;
+
+        $parent->append(array($text, $raw, $emptyDiv));
+
+        $html = implode('', array(
+            '<div class="parent">',
+            '<div class="text">', htmlspecialchars('<b>foo</b>'), '</div>',
+            '<div><b>bar</b></div>',
+            '<div></div>',
+            '</div>',
+        ));
+
+        $this->assertEquals($html, (string) $parent);
+
     }
 
 }

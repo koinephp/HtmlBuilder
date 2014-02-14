@@ -13,7 +13,7 @@ class RawHtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testItIsAnHtmlElement()
     {
-        $this->assertInstanceOf('\Koine\Html\Element', $this->o);
+        $this->assertInstanceOf('\Koine\Html\Elements\Base', $this->o);
     }
 
     public function testItRendersTheEscapedText()

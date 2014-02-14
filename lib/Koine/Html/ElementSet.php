@@ -2,7 +2,7 @@
 
 namespace Koine\Html;
 
-use Koine\Html\Element;
+use Koine\Html\Elements\Base;
 
 class ElementSet
 {
@@ -18,13 +18,13 @@ class ElementSet
         return $this->_collection;
     }
 
-    public function append(Element $element)
+    public function append(Base $element)
     {
         $this->_collection[] = $element;
         return $this;
     }
 
-    public function prepend(Element $element)
+    public function prepend(Base $element)
     {
         array_unshift($this->_collection, $element);
         return $this;
@@ -50,7 +50,7 @@ class ElementSet
         return $this;
     }
 
-    public function remove(Element $element)
+    public function remove(Base $element)
     {
         foreach ($this->getElements() as $key => $el) {
             if ($element === $el) {
@@ -59,6 +59,16 @@ class ElementSet
         }
 
         return $this;
+    }
+
+    public function render()
+    {
+        return implode('', $this->getElements());
+    }
+
+    public function __toString()
+    {
+        return $this->render();
     }
 
 }

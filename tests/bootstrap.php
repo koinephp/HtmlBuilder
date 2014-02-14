@@ -11,7 +11,7 @@ require_once 'SplClassLoader.php';
 $loader = new SplClassLoader('Koine', $libPath);
 $loader->register();
 
-class DummyElement extends \Koine\Html\Element {
+class DummyElement extends \Koine\Html\Elements\Base {
     protected $_tagName = 'dummy';
     protected $_selfClosing = true;
 }

@@ -2,9 +2,7 @@
 
 namespace Koine\Html\Elements;
 
-use Koine\Html\Element;
-
-class RawHtml extends Element
+class RawHtml extends Base
 {
 
     protected $_content;
