@@ -134,4 +134,13 @@ class AttributeSet
         return $default;
     }
 
+    public function setAttributes(array $attributes)
+    {
+        foreach ($attributes as $key => $value) {
+            $this->set($key, $value);
+        }
+
+        return $this;
+    }
+
 }

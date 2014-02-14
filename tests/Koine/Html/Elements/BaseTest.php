@@ -72,4 +72,40 @@ class BaseTest extends \HtmlElementTestCase
 
     }
 
+    public function testItCanSetAttributes()
+    {
+        $this->o->setAttributes(array(
+            'class'       => 'foo',
+            'data-remote' => true
+        ));
+
+        $attributes = $this->o->getAttributes();
+
+        $expected = array(
+            'class'       => array('foo'),
+            'data-remote' => array(true),
+        );
+
+        $this->assertEquals($expected, $attributes->getAll());
+    }
+
+    public function testOptionsCanBeSetViaConstructor()
+    {
+        $element = new Div;
+        $element->setText('ha');
+        $elements   = array($element);
+        $attributes = array('class' => 'foo');
+
+        $object = new Div(array(
+            'elements'   => $elements,
+            'attributes' => $attributes
+        ));
+
+        $this->assertEquals($elements, $object->getElements());
+
+        $this->assertEquals(
+            array('class' => array('foo')),
+            $object->getAttributes()->getAll()
+        );
+    }
 }

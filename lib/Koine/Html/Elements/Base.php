@@ -7,6 +7,7 @@ use Koine\Html\ElementSet;
 
 abstract class Base
 {
+
     protected $_attributes;
 
     protected $_tagName;
@@ -15,10 +16,11 @@ abstract class Base
 
     protected $_children;
 
-    public function __construct()
+    public function __construct(array $options = array())
     {
         $this->_attributes = new AttributeSet;
-        $this->_children = new ElementSet;
+        $this->_children   = new ElementSet;
+        $this->_setOptions($options);
     }
 
     public function getAttributes()
@@ -124,6 +126,25 @@ abstract class Base
     public function getContent()
     {
         return (string) $this->_children;
+    }
+
+    public function getElements()
+    {
+        return $this->_children->getElements();
+    }
+
+    public function setElements($elements)
+    {
+        $this->_children->setElements($elements);
+        return $this;
+    }
+
+    public function _setOptions(array $options)
+    {
+        foreach ($options as $key => $options) {
+            $method = 'set' . ucfirst($key);
+            call_user_func_array(array($this, $method), array($options));
+        }
     }
 
 }
