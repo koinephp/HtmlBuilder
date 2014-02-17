@@ -2,7 +2,7 @@
 
 namespace Koine\Html\Elements;
 
-class Tfoot extends Base
+class Tfoot extends TableRegion
 {
     protected $_tagName = 'tfoot';
 }

@@ -147,4 +147,9 @@ abstract class Base
         }
     }
 
+    public function isEmpty()
+    {
+        return count($this->_children->getElements()) === 0;
+    }
+
 }

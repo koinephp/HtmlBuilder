@@ -2,7 +2,7 @@
 
 namespace Koine\Html\Elements;
 
-class Tbody extends Base
+class Tbody extends TableRegion
 {
     protected $_tagName = 'tbody';
 }

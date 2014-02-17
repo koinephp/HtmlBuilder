@@ -8,33 +8,52 @@ class Table extends Base
 {
     protected $_tagName = 'table';
 
-    protected $_tableHead;
+    protected $_head;
+    protected $_body;
+    protected $_foot;
 
     public function __construct(array $options = array())
     {
         parent::__construct($options);
-        $this->_tableHead = new ElementSet;
+        $this->_head = new Thead();
+        $this->_body = new Tbody();
+        $this->_foot = new Tfoot();
     }
 
     public function getInnerHtml()
     {
         return implode('', array(
-            '<thead>', '<tr>', $this->getHead(), '</tr>', '</thead>',
+            $this->getHead(),
+            $this->getBody(),
+            $this->getFoot(),
         ));
-    }
-
-    public function addTitle($title)
-    {
-        if (gettype('string')) {
-           $title = new Text($title);
-        }
-
-        $this->getHead()->append($title);
-        return $this;
     }
 
     public function getHead()
     {
-        return $this->_tableHead;
+        return $this->_head;
     }
+
+    public function getBody()
+    {
+        return $this->_body;
+    }
+
+    public function getFoot()
+    {
+        return $this->_foot;
+    }
+
+    public function append(Tr $row)
+    {
+        $this->getBody()->append($row);
+        return $this;
+    }
+
+    public function prepend(Tr $row)
+    {
+        $this->getBody()->prepend($row);
+        return $this;
+    }
+
 }
