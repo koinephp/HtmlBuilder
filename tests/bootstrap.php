@@ -1,17 +1,14 @@
 <?php
 
-$libPath = realpath(dirname(__FILE__) . '/../lib/');
+ini_set('display_errors', true);
+error_reporting(E_ALL);
 
-set_include_path(implode(PATH_SEPARATOR, array(
-    $libPath,
-    get_include_path()
-)));
+$libPath   = realpath(dirname(__FILE__) . '/../lib/');
+$testsPath = realpath(dirname(__FILE__) . '/../tests/');
 
-require_once 'SplClassLoader.php';
+$loader = require $libPath . '/../vendor/autoload.php';
+
 require_once 'HtmlElementTestCase.php';
-
-$loader = new SplClassLoader('Koine', $libPath);
-$loader->register();
 
 class DummyElement extends \Koine\Html\Elements\Base {
     protected $_tagName = 'dummyelement';
