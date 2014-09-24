@@ -16,6 +16,7 @@ Package information:
 [![Total Downloads](https://poser.pugx.org/koine/html-builder/downloads.svg)](https://packagist.org/packages/koine/html-builder)
 [![Latest Unstable Version](https://poser.pugx.org/koine/html-builder/v/unstable.svg)](https://packagist.org/packages/koine/html-builder)
 [![License](https://poser.pugx.org/koine/html-builder/license.svg)](https://packagist.org/packages/koine/html-builder)
+[![Dependency Status](https://gemnasium.com/koinephp/HtmlBuilder.png)](https://gemnasium.com/koinephp/HtmlBuilder)
 
 ### Usage
 
